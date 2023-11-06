@@ -1,0 +1,927 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+html, body { height: 100vh }
+html {
+    overflow: hidden;
+}
+
+body {
+    height: 100vh;
+
+    font-family: "bdr-mono", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 11pt;
+
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+h2, p {
+    font-size: 11pt;
+}
+
+.close-button {
+    position: fixed;
+    top: 30px; 
+    left: 30px;
+    
+    width: 30px;
+    height: 30px;
+
+    background-image: url(../images/black_exit.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: white 1px solid;
+}
+.page {
+    position: relative;
+    min-height: 100vh;
+
+    /* scroll-snap-stop: always; */
+
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    scroll-snap-align: start;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.page#page-1 {
+    background-image: url("../images/white_background.png");
+}
+
+.map {
+    position: relative;
+}
+
+.map .marker {
+    position: absolute;
+    padding: .25rem .5rem;
+
+    translate: -50% -50%;
+
+    background: yellow;
+    border: #000000 1px solid;
+
+    display: inline-block;
+    cursor: pointer;;
+}
+
+.map .marker:nth-child(2) {
+    top: 20%; left: 50%;
+}
+.map .marker:nth-child(3) {
+    top: 29%; left: 79%;
+}
+.map .marker:nth-child(4) {
+    top: 35%; left: 80%;
+}
+.map .marker:nth-child(5) {
+    top: 34%; left: 71%;
+}
+.map .marker:nth-child(6) {
+    top: 36%; left: 75%;
+}
+
+.map .popup {
+    position: absolute;
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+
+    width: min(300px, 80vw);
+    height: auto;
+    padding: 0.5rem;
+
+    background: yellow;
+    border: 1px solid black;
+
+    pointer-events: none;
+}
+.map .popup.hidden,
+.map .popup .text.hidden {
+    display: none;
+}
+
+.page#page-2 {
+    background-image: url("../images/black_background.png");
+}
+
+.opium-intro {
+    position: relative;
+}
+
+#questionBtn {
+    position: absolute;
+
+    left: 30px;
+    bottom: 30px;
+
+    height: 30px;
+    width: 30px;
+
+    border: none;
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .infobox-content {
+        background-color: yellow;
+        margin: 10% auto; /* 15% from the top and centered */
+        padding: 1.5rem;
+        padding-left: 2.3rem;
+        padding-right: 2.3rem;
+        border: 1px solid #000000;
+        width: 40%; /* Could be more or less, depending on screen size */
+    }
+
+    .close {
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        padding-left: 0.3rem;
+    }
+
+    .close:hover, 
+    .close:focus {
+        color: red;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.page#page-3 {
+    background-image: url("../images/white_background.png");
+}
+
+.ch-date {
+    position: absolute;
+    left: 30px;
+}
+.en-date {
+    position: absolute;
+    left: 60px;
+}
+
+.opium-selection{
+    width: 55vw;
+    position: relative;
+}
+.pipe-box {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    cursor: pointer;
+}
+.pipe-box > div {
+    width: 16vw;
+    flex-grow: 1;
+}
+.pipe-box img {
+    background-image: url("../images/black_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: auto;
+    width: 100%;
+
+    /* flex: 1; */
+
+    display: block;
+}
+.pipe-box > div:hover img {
+    background-image: url("../images/white_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pipe-box .metadata {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2rem);
+    display: none;
+
+    border-radius: 10px;
+}
+.pipe-box > div:hover .metadata {
+    width: calc(20vw - 4rem);
+    padding: 0.6rem;
+    color: white;
+    background: black;
+    display: inline-block;
+}
+.pipe-box > div:hover .metadata p {
+    margin-bottom: 1rem;
+}
+
+#pipebox-pending {
+    position: absolute;
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+    background: yellow;
+    border: #000000 1px solid;
+    display: none;
+
+    padding: 1rem;
+    text-align: center;
+
+    width: 24.5vw;
+    height: 24.5vw;
+}
+
+.page#page-4 {
+    background-image: url("../images/emperor_backdrop.png");
+}
+
+.page#page-5 {
+    background-image: url("../images/black_background.png");
+}
+
+#linLetter{
+    position: absolute;
+    max-height: 80vh;
+    width: auto;
+}
+
+.page#page-6 {
+    background-image: url("../images/shack.png");
+}
+
+.bird{
+    position: absolute;
+    max-width: 10vw;
+    height: auto;
+    left: -30vw;
+    top: 10vh;
+
+    animation-name: bird;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes bird {
+    0% {transform: translate(0vw,0);}
+    100% {transform: translate(130vw,0);}
+}    
+
+
+.inventoryBtn{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    
+    color: black;
+    background-color: white;
+    padding: 0.4rem;
+    border: black 1px solid;
+
+    cursor: pointer;
+}
+
+#inventory{
+    color: white;
+    border: white 1px solid;
+
+    background: black;
+    padding: 0.6rem;
+    text-align: center;
+    display: none;
+    position:absolute;
+    left:30px;
+    bottom: 65px;
+
+    z-index: 1;
+}
+#inventory.show {
+display: block;
+}
+
+#inventory img{
+    width: 9.3vw;
+    height: auto;
+}
+
+.inventoryBtn:hover{
+    color: black;
+    background-color: yellow;
+}
+
+.page#page-7 {
+    background-image: url("../images/battle1_terrain.png");
+}
+
+.game img{
+    position: absolute;
+}
+
+    .game
+    #royalsaxonboat{
+        left: 7vw;
+        top: 73vh;
+        transform: translate(50%,-50%);
+        
+        width: 25vw;
+        height: auto;
+    }
+
+    .game
+    #chwarship2{
+        top: 27vh;
+        right: 40vw;
+        transform: translate(50%,-50%);
+
+        width: 18vw;
+        height: auto;
+    }
+
+    .game
+    #chwarship1{
+        top: 40vh;
+        right: 50vw;
+        transform: translate(50%,-50%);
+
+        width: 11vw;
+        height: auto;
+    }
+
+    .game
+    #explosion{
+        top: 35vh;
+        right: 49vw;
+        transform: translate(50%,-50%);
+
+        width: 11vw;
+        height: auto;
+    }
+
+    .game
+    #explosion2{
+        top: 30vh;
+        right: 35vw;
+        transform: translate(50%,-50%);
+
+        width: 11vw;
+        height: auto;
+    }
+    
+    .game
+    #explosion3{
+        top: 26vh;
+        right: 46vw;
+        transform: translate(50%,-50%);
+
+        width: 11vw;
+        height: auto;
+    }
+
+.royalsaxon_stat{
+    position: absolute;
+    right: 75px;
+    top: 50vh;
+    transform: translate(0,-50%);
+
+    text-align: center;
+    color: white;
+    
+    width: 20vw;
+    height: auto;
+}
+
+.royalsaxon_stat img{
+    width: 13vw;
+    height: auto;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.battle_nav{
+    position: absolute;
+    left: 130px;
+    top: 50vh; 
+    transform: translate(0,-50%);
+}
+
+.battle_nav img{
+    width: 17vw;
+    height: auto;
+}
+
+.focus{
+    width: fit-content;
+    height: auto;
+}
+
+.focus img{
+    width: 20vw;
+    height: auto;
+}
+
+.mapBtn{
+    border: white 1px solid;
+    padding: 0.3rem;
+    
+    position: absolute;
+    bottom: 60px;
+
+    text-align: center;
+    color: white;
+}
+.mapBtn:hover{
+    border: yellow 1px solid;
+    color: yellow;
+
+    cursor: pointer;
+}
+
+#cantonMap{
+    padding: 1px;
+    z-index: 1;
+
+    max-width: 45vw;
+    height: fit-content;
+
+    position: absolute;
+}
+#cantonMap.show {
+    display: block;
+    }
+
+.page#page-8 {
+    background-image: url("../images/white_background.png");
+}
+
+#material-assistance{
+    max-width: 80vw;
+    height: auto;
+}
+
+.page#page-9 {
+    background-image: url("../images/white_background.png");
+}
+
+.boat-selection{
+    width: 20vw;
+    position: absolute;
+
+    left: 95px; 
+}
+.boat-box {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    cursor: pointer;
+}
+.boat-box > div {
+    width: fit-content;
+    flex-grow: 1;
+
+    background-image: url("../images/black_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    display: block;
+
+    margin-bottom: 30px;
+}
+
+.boat-box h2{
+    color: white;
+    position: absolute;
+    padding: 1rem;
+}
+.boat-box > div:hover h2{
+    color: black;
+}
+
+.boat-capacity{
+    right: 0;
+}
+
+.boat-box > div img:hover{
+    background-image: url("../images/white_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.triangle{
+    position: absolute;
+    width: 0;
+	height: 0;
+	border-left: 0 solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid white;
+}
+
+.boatdata{
+    position: absolute;
+    
+    left: calc(100% + 10rem);
+    display: none;
+
+    top: 0;
+}
+
+#rotatingboat{
+    position: absolute;
+
+    background-image: none;
+
+    border: white solid 1px;
+
+    
+    max-width: 50vw;
+
+}
+#noboatdata{
+    position: absolute;
+    border: white solid 1px;
+}
+
+.boat-box > div:hover .boatdata {
+    width: calc(20vw - 4rem);
+    display: inline-block;
+}
+
+.page#page-10 {
+    background-image: url("../images/chunpi.png");
+}
+
+#british-flag{
+    position: absolute;
+
+    transform: translate(120px,-50px);
+
+    width: 6vw;
+    height: auto;
+
+}
+
+.page#page-11 {
+    background-image: url("../images/white_background.png");
+}
+
+#linzexu{
+    max-height: 80vh;
+    width: auto;
+}
+
+.page#page-12 {
+    background-image: url("../images/desk.png");
+}
+
+.settlement{    
+    border: #000000 solid 1px;
+    background-color: white;
+    color: #000000;
+
+    padding: 1rem;
+
+    width: 40vw;
+    height: 80vh;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.settlement #settlement-text{
+    position: absolute;
+
+    margin: 3rem;
+}
+.settlement #BEIC-logo{
+    position: absolute;
+    max-height: 20vh;
+    width: auto;
+
+    top: 3rem;
+}
+.settlementBox :hover{
+    background-color: yellow; 
+    cursor: pointer;
+}
+
+#quill{
+    position: absolute;
+    max-width: 40vw;
+    height: auto;
+
+    bottom: 7rem;
+    right: 15rem;
+}
+
+.page#page-13 {
+    background-image: url("../images/black_background.png");
+}
+
+.binocular{
+    width: 80vw;
+    height: auto;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+#binocular-view{
+    position: absolute;
+}
+#binocular-grid{
+    position: absolute;
+
+    width: 76vw;
+    height: auto;
+}
+
+.binocularboat{
+    position: absolute;
+
+    width: 10vw;
+    height: auto;
+
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes shake {
+    0% { transform: translate(0px, 1px) rotate(0deg); }
+    50% { transform: translate(0px, 2px) rotate(1deg); }
+    100% { transform: translate(0px, 1px) rotate(1deg); }
+}
+#b1{
+    left: 60px;
+}
+#b2{
+    top: -60px;
+    left: 120px;
+}
+
+.binocular-explosion{
+    position: absolute;
+    width: 5vw;
+    height: auto;   
+}
+#e1{
+    transform: translate(-150%,55%);
+}
+#e2{
+    transform: translate(-200%,40%);
+}
+#e3{
+    transform: translate(-100%,0%);
+}
+#e4{
+    transform: translate(-300%,-200%);
+}
+#e5{
+    transform: translate(350%,0%);
+}
+#e6{
+    transform: translate(460%,130%);
+}
+
+#binocular-flag{
+    position: absolute;
+    width: 5vw;
+    height: auto;
+    
+    transform: translate(-200%,290%);
+}
+
+#binocular-nav{
+    position: absolute;
+    width: 17vw;
+    height: auto;
+
+    left: 110px;
+    bottom: 80px;
+}
+
+#healthBar{
+    position: absolute;
+    width: 20vw;
+    height: auto;
+
+    left: 100px;
+    top: 110px;
+}
+
+.launchBtn{
+    position: absolute;
+
+    bottom: 80px;
+    right: 12vw;
+
+    width: fit-content;
+    padding: 0.3rem;
+
+    background-color: transparent;
+    border: white 1px solid;
+    color: white;
+}
+.launchBtn:hover{
+    color: yellow;
+    border: yellow 1px solid;
+
+    cursor: pointer;
+}
+
+#launch-bomb{
+    padding: 1px;
+    z-index: 1;
+
+    width: 100vw;
+    height: 100vh;
+
+    border: red 10px solid;
+
+    position: absolute;
+    top: 50%; left: 50%;
+    translate: -50% -50%;
+
+    background: none;
+
+    display: none;
+}
+#launch-bomb.show {
+    display: block;
+    text-align: center;
+}
+
+#launch-bomb img{
+    position: absolute;
+    width: 30rem;
+    height: auto;
+
+    translate: -50% 0;
+    top: 80px;
+}
+
+.page#page-14 {
+    /* background-image: url("../images/white_background.png"); */
+    background-color: red;
+}
+
+#cardtray{
+    max-width: 90vw;
+    height: auto;
+}
+
+.cards{
+    /* border: red 1px solid; */
+    width: fit-content;
+    height: fit-content;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    position: absolute;
+}
+#card1{
+    transform: translate(-35%,-50%) rotate(-12deg);
+}
+#card2{
+    transform: translate(-60%,0%) rotate(15deg);
+}
+#card3{
+    transform: translate(5%,50%) rotate(-5deg);
+}
+#card4{
+    transform: translate(15%,15%) rotate(0deg);
+}
+
+.flip-card {    
+    margin: 15px;
+
+    text-align: center;
+
+    background-color: transparent;
+    width: 15vw;
+    height: 37.5vh;
+    border: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  .flip-card h2{
+    position: absolute;
+    padding: 0.6rem;
+
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  } 
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: white;
+    border: black 1px solid;
+    color: black;
+
+    border-radius: 10px;
+  }
+  /* Style the back side */
+  .flip-card-back {
+    background-color: black;
+    border: black 1px solid;
+    color: white;
+    transform: rotateY(180deg);
+
+    border-radius: 10px;
+  }
+
+.page#page-15 {
+    background-color: red;
+}
+
+.page#page-16 {
+    background-color: red;
+}
+
+/*  */
+
+.page img {
+    max-width: 100%;
+    height: auto;
+}
+
+.textbox {
+    position: absolute;
+    top: 30px; right: 30px;
+
+    width: 38vh;
+    padding: 0.6rem;
+
+    text-align: left;
+    color: black;
+
+    background-color: white;
+    border: black 1px solid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

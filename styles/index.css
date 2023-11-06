@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding:0;
+
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+
+    font-family: "bdr-mono", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 11pt;
+}
+
+h2, p {
+    font-size: 12pt;
+    color: white;
+}
+
+.page {
+    position: relative;
+    min-height: 100vh;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.page#page-0 {
+    background-image: url("../images/title.png");
+}
+
+.title_box{
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%,-50%); 
+    
+    max-width: 100vw;
+    height: auto;
+
+    text-align: center;
+}
+
+.page img{
+    max-width: 30vw;
+    height: auto;
+}
+
+.text-left{
+    position: absolute;
+    left: 20px;
+    transform: rotate(270deg);
+}
+
+.text-right{
+    position: absolute;
+    right: 30px;
+}
+
+img:hover {
+    animation: dragon 5s;
+  
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @keyframes dragon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
